@@ -14,6 +14,7 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        check = request.form['check']
         db = get_db()
         error = None
 
@@ -21,6 +22,9 @@ def register():
             error = 'Requiere Nombre de Usuario.'
         elif not password:
             error = 'Requiere Contraseña.'
+
+        if password != check:
+            error = 'Verificacion de contraseña incorrecta'
 
         if error is None:
             try:
