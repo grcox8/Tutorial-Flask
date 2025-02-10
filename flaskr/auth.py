@@ -15,15 +15,17 @@ def register():
         username = request.form['username']
         password = request.form['password']
         check = request.form['check']
+        email =  request.form['email']
         db = get_db()
         error = None
 
         if not username:
             error = 'Requiere Nombre de Usuario.'
+        elif not email:
+            error = 'Requiere Correo electronico.'
         elif not password:
             error = 'Requiere Contraseña.'
-
-        if password != check:
+        elif  not password == check:
             error = 'Verificacion de contraseña incorrecta'
 
         if error is None:
